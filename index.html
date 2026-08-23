@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RateCalcPH — Ano ang tamang singil mo? Freelancer Rate Calculator (Free)</title>
+<link rel="manifest" href="manifest.json">
 <meta name="description" content="Ilang pera talaga dapat ang singil mo? Free rate calculator para sa PH freelancers: target kita → hourly, day rate, project rate, at monthly retainer — kasama ang taxes, expenses, at non-billable time. Free, no signup.">
 <meta property="og:title" content="RateCalcPH — Freelancer Rate Calculator">
 <meta property="og:description" content="Free PH freelancer rate calculator: target net → hourly, day rate, retainer, project rate. Includes tax + billable time math. PRO ₱99 for service menu.">
@@ -204,5 +205,11 @@
 </div>
 
 <script src="app.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+</script>
 </body>
 </html>
