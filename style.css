@@ -1,7 +1,7 @@
 /* RateCalcPH — brand layer (indigo+amber, Closer-funnel cohesion) */
 :root{
   --brand:#312e81; --brand2:#4338ca; --accent:#f59e0b; --accdeep:#b45309;
-  --ink:#101828; --muted:#667085; --line:#e2e8f0; --bg:#f6f7fd;
+  --ink:#101828; --muted:#3d4a5c; --line:#e2e8f0; --bg:#f6f7fd;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
