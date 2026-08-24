@@ -1,6 +1,6 @@
 /* RateCalcPH — freelancer rate calculator. Vanilla JS, no deps, no server. */
 'use strict';
-const PRO_CODES = ['RATECALC-99', 'RCP-DEMO'];
+const PRO_CODES = ['RCP-PRO-99-EEE8-B24F', 'RCP-PRO-99-DEMO-20DE-AC3F'];
 const FREE_SVC = 2;
 const LS = { pro: 'rcp_pro', draft: 'rcp_draft', svc: 'rcp_svc' };
 
