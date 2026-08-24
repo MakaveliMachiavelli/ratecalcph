@@ -139,7 +139,89 @@
         <p style="color:var(--p-muted);">For PH freelancers who undervalue themselves · <a href="https://makavelimachiavelli.github.io/zinvent-hub/">Zinvent</a></p>
       </div>
     </section>
-  </main>
+  
+  <section id="z-app" class="z-section" hidden>
+    <div class="z-wrap" id="z-app-root">
+
+
+<header class="site-header">
+  <div class="brand">Rate<span>Calc</span>PH</div>
+  <nav>
+    <span id="proBadge" class="badge hidden">PRO</span>
+    <a href="#faq" class="navlink">FAQ</a>
+    <button id="proBtn" class="btn-link">PRO — ₱99</button>
+  </nav>
+</header>
+<main id="main">
+<section class="hero">
+  <h1>Ano ang tamang <span class="accent">singil</span> mo?</h1>
+  <p class="lede">Ilang pera talaga dapat ang singil mo bilang freelancer sa Pilipinas — kasama taxes, expenses, at non-billable time. Libre, walang signup.</p>
+  <div class="chips">
+    <span class="chip">✓ Hourly rate</span>
+    <span class="chip">✓ Day rate</span>
+    <span class="chip">✓ Project rate</span>
+    <span class="chip">✓ Monthly retainer</span>
+  </div>
+</section>
+<section class="calculator" aria-label="Rate calculator">
+  <div class="panel">
+    <h2>Your target</h2>
+    <label>Target monthly net income (₱)
+      <input id="target" type="number" value="50000" min="0">
+    </label>
+    <label>Business expenses / month (₱)
+      <input id="expenses" type="number" value="5000" min="0">
+    </label>
+    <label>Effective tax rate (%)
+      <input id="taxRate" type="number" value="8" min="0" max="100">
+    </label>
+    <label>Non-billable time (% of week)
+      <input id="nonBill" type="number" value="30" min="0" max="100">
+    </label>
+    <label>Billable hours / week
+      <input id="billHrs" type="number" value="30" min="0">
+    </label>
+    <label>Weeks worked / year
+      <input id="weeks" type="number" value="48" min="1" max="52">
+    </label>
+  </div>
+  <div class="panel results" id="results">
+    <h2>Recommended rates</h2>
+    <div class="stat"><span class="stat-label">Required gross / year</span><span class="stat-value" id="grossYr">—</span></div>
+    <div class="stat"><span class="stat-label">Hourly rate</span><span class="stat-value" id="hourly">—</span></div>
+    <div class="stat"><span class="stat-label">Day rate (8h)</span><span class="stat-value" id="day">—</span></div>
+    <div class="stat"><span class="stat-label">Project rate / mo</span><span class="stat-value" id="project">—</span></div>
+    <div class="stat"><span class="stat-label">Monthly retainer</span><span class="stat-value" id="retainer">—</span></div>
+    <p class="hint" id="hint"></p>
+  </div>
+</section>
+<section class="cta-box" id="faq">
+  <h2>FAQ</h2>
+  <details><summary>Magkano ang dapat na hourly rate ko bilang freelancer sa Pilipinas?</summary><p>Hindi ito base sa kung magkano ang singil ng iba — kundi sa kung magkano ang kailangan mong kitain. I-compute: (target na buwanang kita + business expenses) ÷ (1 − tax rate) = kailangang gross; hatiin sa billable hours (mga 50–70% ng oras mo lang ang nababayaran).</p></details>
+  <details><summary>Bakit mas mataas dapat ang freelance rate kaysa sa sweldo?</summary><p>Kasi walang employer na nagbabayad ng SSS/PhilHealth/Pag-IBIG, leave, at 13th month — ikaw lahat 'yon. Plus non-billable oras (marketing, admin) at laging may dead months.</p></details>
+  <details><summary>Free ba ito?</summary><p>Oo — buong calculator, libre, walang signup. PRO (₱99 one-time, GCash) ay nagdaragdag ng service menu builder at CSV export.</p></details>
+</section>
+</main>
+<footer class="site-footer">
+  <p>RateCalcPH — free PH freelancer rate calculator. No signup. <a href="https://makavelimachiavelli.github.io/zinvent-hub/">More free tools</a>.</p>
+</footer>
+<section class="pay-modal hidden" id="payModal">
+  <div class="pay-card">
+    <button class="pay-close" id="payClose">✕</button>
+    <h3>Unlock RateCalcPH PRO — ₱99</h3>
+    <p>GCash QR below. After payment, message me your reference and I'll send your code.</p>
+    <img src="gcash-qr.svg" alt="GCash QR" class="pay-qr">
+    <p class="pay-code-label">Enter your unlock code:</p>
+    <input id="codeInput" type="text" placeholder="RCP-PRO-XXX-XXXX-XXXX" style="text-transform:uppercase">
+    <button id="codeBtn" class="btn-primary">Unlock PRO</button>
+    <p id="codeMsg" class="code-msg"></p>
+  </div>
+</section>
+
+
+    </div>
+  </section>
+</main>
   <footer class="z-footer" role="contentinfo">
     <div class="z-wrap">
       <p>&copy; 2025 RateCalcPH · <a href="https://makavelimachiavelli.github.io/zinvent-hub/privacy.html">Privacy</a> · <a href="https://makavelimachiavelli.github.io/zinvent-hub/terms.html">Terms</a></p>
@@ -151,5 +233,19 @@
     </div>
   </footer>
   <script src="app.js"></script>
+
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action]');
+    if(!btn) return;
+    var act = btn.getAttribute('data-action');
+    if(act && act.indexOf('new-')===0 || act==='start'){
+      var app = document.getElementById('z-app');
+      if(app){ app.hidden = false; app.scrollIntoView({behavior:'smooth'}); }
+    }
+  });
+})();
+</script>
 </body>
 </html>
