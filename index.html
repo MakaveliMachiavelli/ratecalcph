@@ -8,19 +8,94 @@
   <link rel="canonical" href="https://makavelimachiavelli.github.io/ratecalcph/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234338ca'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23f59e0b' font-family='Arial' font-weight='bold'%3E₱%3C/text%3E%3C/svg%3E">
   <!-- Zinvent Design System -->
-    <!-- Zinvent Design System -->
   <link rel="stylesheet" href="https://makavelimachiavelli.github.io/zinvent-design-system/tokens.css">
-    <link rel="stylesheet" href="https://makavelimachiavelli.github.io/zinvent-design-system/components/base.css">
-  <!-- Zinvent Analytics (privacy-first, no cookies) -->
-  <script src="https://makavelimachiavelli.github.io/zinvent-design-system/components/analytics.js"></script>
-  <!-- Zinvent Payments (GCash + LemonSqueeasy, affiliate, email capture) -->
-  <script src="https://makavelimachiavelli.github.io/zinvent-design-system/components/payments.js"></script>
-<link rel="stylesheet" href="https://makavelimachiavelli.github.io/zinvent-design-system/tokens.css">
   <link rel="stylesheet" href="https://makavelimachiavelli.github.io/zinvent-design-system/components/base.css">
   <!-- Zinvent Analytics (privacy-first, no cookies) -->
   <script src="https://makavelimachiavelli.github.io/zinvent-design-system/components/analytics.js"></script>
   <!-- Zinvent Payments (GCash + LemonSqueezy, affiliate, email capture) -->
   <script src="https://makavelimachiavelli.github.io/zinvent-design-system/components/payments.js"></script>
   <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@...[truncated]
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Magkano ang dapat na hourly rate ko bilang freelancer sa Pilipinas?","acceptedAnswer":{"@type":"Answer","text":"Hindi ito base sa kung magkano ang singil ng iba — kundi sa kung magkano ang kailangan mong kitain. I-compute: (target na buwanang kita + business expenses) ÷ (1 − tax rate) = kailangang gross; hatiin sa billable hours (mga 50–70% ng oras mo lang ang nababayaran). Ang calculator na ito gumagawa niyan."}},
+{"@type":"Question","name":"Bakit mas mataas dapat ang freelance rate kaysa sa sweldo?","acceptedAnswer":{"@type":"Answer","text":"Kasi walang employer na nagbabayad ng SSS/PhilHealth/Pag-IBIG, leave, at 13th month — ikaw lahat 'yon. Plus mga non-billable oras (marketing, admin, proposals) at laging may dead months. Ang tamang rate ay nakasalalay sa buong picture, hindi lang sa sweldo na gusto mo."}},
+{"@type":"Question","name":"Free ba ito?","acceptedAnswer":{"@type":"Answer","text":"Oo — buong calculator, libre, walang signup. PRO (₱99 one-time, GCash) ay nagdaragdag ng service menu builder (per-service pricing) at CSV export."}}]}</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
+  <div class="brand">Rate<span>Calc</span>PH</div>
+  <nav>
+    <span id="proBadge" class="badge hidden">PRO</span>
+    <a href="#faq" class="navlink">FAQ</a>
+    <button id="proBtn" class="btn-link">PRO — ₱99</button>
+  </nav>
+</header>
+<main id="main">
+<section class="hero">
+  <h1>Ano ang tamang <span class="accent">singil</span> mo?</h1>
+  <p class="lede">Ilang pera talaga dapat ang singil mo bilang freelancer sa Pilipinas — kasama taxes, expenses, at non-billable time. Libre, walang signup.</p>
+  <div class="chips">
+    <span class="chip">✓ Hourly rate</span>
+    <span class="chip">✓ Day rate</span>
+    <span class="chip">✓ Project rate</span>
+    <span class="chip">✓ Monthly retainer</span>
+  </div>
+</section>
+<section class="calculator" aria-label="Rate calculator">
+  <div class="panel">
+    <h2>Your target</h2>
+    <label>Target monthly net income (₱)
+      <input id="target" type="number" value="50000" min="0">
+    </label>
+    <label>Business expenses / month (₱)
+      <input id="expenses" type="number" value="5000" min="0">
+    </label>
+    <label>Effective tax rate (%)
+      <input id="taxRate" type="number" value="8" min="0" max="100">
+    </label>
+    <label>Non-billable time (% of week)
+      <input id="nonBill" type="number" value="30" min="0" max="100">
+    </label>
+    <label>Billable hours / week
+      <input id="billHrs" type="number" value="30" min="0">
+    </label>
+    <label>Weeks worked / year
+      <input id="weeks" type="number" value="48" min="1" max="52">
+    </label>
+  </div>
+  <div class="panel results" id="results">
+    <h2>Recommended rates</h2>
+    <div class="stat"><span class="stat-label">Required gross / year</span><span class="stat-value" id="grossYr">—</span></div>
+    <div class="stat"><span class="stat-label">Hourly rate</span><span class="stat-value" id="hourly">—</span></div>
+    <div class="stat"><span class="stat-label">Day rate (8h)</span><span class="stat-value" id="day">—</span></div>
+    <div class="stat"><span class="stat-label">Project rate / mo</span><span class="stat-value" id="project">—</span></div>
+    <div class="stat"><span class="stat-label">Monthly retainer</span><span class="stat-value" id="retainer">—</span></div>
+    <p class="hint" id="hint"></p>
+  </div>
+</section>
+<section class="cta-box" id="faq">
+  <h2>FAQ</h2>
+  <details><summary>Magkano ang dapat na hourly rate ko bilang freelancer sa Pilipinas?</summary><p>Hindi ito base sa kung magkano ang singil ng iba — kundi sa kung magkano ang kailangan mong kitain. I-compute: (target na buwanang kita + business expenses) ÷ (1 − tax rate) = kailangang gross; hatiin sa billable hours (mga 50–70% ng oras mo lang ang nababayaran).</p></details>
+  <details><summary>Bakit mas mataas dapat ang freelance rate kaysa sa sweldo?</summary><p>Kasi walang employer na nagbabayad ng SSS/PhilHealth/Pag-IBIG, leave, at 13th month — ikaw lahat 'yon. Plus non-billable oras (marketing, admin) at laging may dead months.</p></details>
+  <details><summary>Free ba ito?</summary><p>Oo — buong calculator, libre, walang signup. PRO (₱99 one-time, GCash) ay nagdaragdag ng service menu builder at CSV export.</p></details>
+</section>
+</main>
+<footer class="site-footer">
+  <p>RateCalcPH — free PH freelancer rate calculator. No signup. <a href="https://makavelimachiavelli.github.io/zinvent-hub/">More free tools</a>.</p>
+</footer>
+<section class="pay-modal hidden" id="payModal">
+  <div class="pay-card">
+    <button class="pay-close" id="payClose">✕</button>
+    <h3>Unlock RateCalcPH PRO — ₱99</h3>
+    <p>GCash QR below. After payment, message me your reference and I'll send your code.</p>
+    <img src="gcash-qr.svg" alt="GCash QR" class="pay-qr">
+    <p class="pay-code-label">Enter your unlock code:</p>
+    <input id="codeInput" type="text" placeholder="RCP-PRO-XXX-XXXX-XXXX" style="text-transform:uppercase">
+    <button id="codeBtn" class="btn-primary">Unlock PRO</button>
+    <p id="codeMsg" class="code-msg"></p>
+  </div>
+</section>
+<script src="app.js"></script>
+</body>
+</html>
